@@ -21,6 +21,10 @@ body {
 	background: #F0F0F0;
 }
 
+body>header {
+	text-shadow: 2px 2px #DDDDDD;
+}
+
 h1, h2 {
 	font-size: 28px;
 	line-height: 44px;
@@ -47,13 +51,18 @@ nav {
 	position: absolute;
 	left: 0;
 	width: 100%;
-	background: url("images/nav_background.png");
+	/* background: url("images/nav_background.png"); */
+  background: -webkit-linear-gradient(#333, #222); /*Safari 5.1-6*/
+  background: -o-linear-gradient(#333, #222); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(#333, #222); /*Fx 3.6-15*/
+  background: linear-gradient(#333, #222); /*Standard*/
 }
 
 	nav ul {
 		margin: 0 auto;
 		width: 940px;
 		list-style: none;
+		padding-left: 0;
 	}
 
 		nav ul li {
@@ -80,10 +89,34 @@ nav {
 			}
 
 			nav ul li.subscribe a {
+				position: relative;
 				margin-left: 22px;
 				padding-left: 33px;
 				text-align: left;
-				background: url("images/rss.png") left center no-repeat;
+			}
+
+			nav ul li.subscribe a::before {
+				content: '';
+				height: 30px;
+				width: 30px;
+				left: 0;
+				top: 15%;
+				position: absolute;
+				background: url("images/rss.png");
+				background-size: 100% auto;
+				-webkit-transition: all 2s ease-in-out;
+				-moz-transition: all 2s ease-in-out;
+				-ms-transition: all 2s ease-in-out;
+				transition: all 2s ease-in-out;
+				/* a solution to a wierd bug, remove to see it */
+				z-index:1;
+			}
+
+			nav ul li.subscribe a:hover::before {
+				-webkit-transform:rotate(720deg) scale(2,2);
+				-moz-transform:rotate(720deg) scale(2,2);
+				-ms-transform:rotate(720deg) scale(2,2);
+				transform:rotate(720deg) scale(2,2);
 			}
 
 
@@ -95,7 +128,11 @@ nav {
 	position: relative;
 	margin-top: 66px;
 	padding: 44px;
-	background: #467612 url("images/intro_background.png") repeat-x;
+	/* background: #467612 url("images/intro_background.png") repeat-x; */
+  background: -webkit-linear-gradient(#B5DB31, #48771D); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#B5DB31, #48771D); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#B5DB31, #48771D); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#B5DB31, #48771D); /* Standard syntax */
 
 	/* Background-size not implemented yet */
 	-webkit-background-size: 100%;
@@ -141,7 +178,6 @@ nav {
 /*------------------------------
 =CONTENT AREA AND SIDEBAR LAYOUT
 ------------------------------*/
-
 #content {
 	display: table;
 }
@@ -150,12 +186,17 @@ nav {
 		display: table-cell;
 		width: 620px;
 		padding-right: 22px;
+		font-family: 'Ubuntu', sans-serif;
 	}
 
 	aside {
 		display: table-cell;
 		width: 300px;
-		background: url("images/sidebar_background.png") top left;
+		/* background: url("images/sidebar_background.png") top left; */
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(right, rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(right, rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Fx 3.6-15*/
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Standard*/
 	}
 
 
@@ -165,7 +206,11 @@ nav {
 aside section {
 	margin: 22px 0 0 22px;
 	padding: 11px 22px;
-	background: url("images/sidebar_section_background.png") repeat-x;
+	/* background: url("images/sidebar_section_background.png") repeat-x; */
+  background: -webkit-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Fx 3.6-15*/
+  background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)); /*Standard*/
 
 	/* Border-radius not implemented yet */
 	-moz-border-radius: 11px;
@@ -294,7 +339,8 @@ form {
 			vertical-align: top;
 		}
 
-		form input[type="text"], form input[type="email"], form input[type="url"] {
+		form input[type="text"], form input[type="email"], form input[type="url"],
+    form input[type="date"], form input[type="range"] {
 			display: table-cell;
 			width: 300px;
 			height: 20px;
